@@ -49,5 +49,24 @@ namespace TraceabilityLibrary
         {
             return FileName.FilePath().LoadFile().ChangeToIngredient();
         }
+
+        public ProductModel AddProduct(HashSet<string> Ingredients, ProductModel ProductName, string FileName)
+        {
+            Dictionary<ProductModel, HashSet<string>> Product =
+            FileName.FilePath().LoadProductFile().ChangeToProduct();
+            Product.Add(ProductName,Ingredients);
+            Product.SaveProductToFile(FileName);
+            return ProductName;
+        }
+
+        public Dictionary<ProductModel,HashSet<string>> GetAllProducts(string FileName)
+        {
+            return FileName.FilePath().LoadProductFile().ChangeToProduct();
+        }
+
+        public HashSet<SheetModel> GetAllSheets(string FileName)
+        {
+            return FileName.FilePath().LoadFile().ChangeToSheet();
+        }
     }
 }

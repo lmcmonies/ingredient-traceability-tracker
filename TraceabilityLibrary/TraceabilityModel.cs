@@ -8,7 +8,7 @@ namespace TraceabilityLibrary
 {
     public class TraceabilityModel
     {
-        public int Id { get; internal set; }
+        //public int Id { get; internal set; }
         public string Ingredient { get; set; }
         public string BatchNumber { get; set; }
         public string DateOpened { get; set; }

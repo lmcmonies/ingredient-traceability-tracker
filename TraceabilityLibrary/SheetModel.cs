@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace TraceabilityLibrary
 {
-    public class ProductModel
+    public class SheetModel
     {
-        public int Id { get; set; }
-        public string ProductName { get; set; }
+        public string SheetName { get; set; }
 
-        public string DisplayProduct
+        public string DisplaySheet
         {
             get
             {
-                return $"{ProductName}";
+                return $"{SheetName}";
             }
         }
-
     }
 }

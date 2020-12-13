@@ -13,8 +13,10 @@ namespace TraceabilityUI
 {
     public partial class ProductsForm : Form
     {
-        string ingredientFile = "Ingredients.csv";
+        readonly string IngredientFile = "Ingredients.csv";
+        readonly string ProductsFile = "Products.csv";
         HashSet<IngredientModel> Ingredients = new HashSet<IngredientModel>();
+        HashSet<string> ProductIngredients = new HashSet<string>();
         public ProductsForm()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace TraceabilityUI
         {
             foreach (IFileConnection connection in GlobalConfig.Connection)
             {
-                Ingredients = connection.GetAllIngredients(ingredientFile);
+                Ingredients = connection.GetAllIngredients(IngredientFile);
             }
         }
 
@@ -39,6 +41,47 @@ namespace TraceabilityUI
             }
         }
 
+        public void DisplayProductIngredients()
+        {
+            if (ProductIngredients != null)
+            {
+                ProductIngredientsListBox.DataSource = ProductIngredients.ToList();
+                ProductIngredientsListBox.DisplayMember = "DisplayIngredient";
+            }
+        }
 
+        private void AddProductButton_Click(object sender, EventArgs e)
+        {
+            IngredientModel Ingredient = (IngredientModel)AllIngredientsListBox.SelectedItem;
+            ProductIngredients.Add(Ingredient.IngredientName);
+            ProductIngredientsListBox.DataSource = ProductIngredients.ToList();
+        }
+
+        private void DeleteProduct_Click(object sender, EventArgs e)
+        {
+            string Ingredient = (string)ProductIngredientsListBox.SelectedItem;
+            if (Ingredient != null)
+            {
+                ProductIngredients.Remove(Ingredient);
+            }
+            DisplayProductIngredients();
+        }
+
+        private void CreateProduct_Click(object sender, EventArgs e)
+        {
+            ProductModel Product = new ProductModel
+            {
+                ProductName = ProductTextBox.Text.Trim(),
+            };
+            AddProduct(ProductIngredients, Product, ProductsFile);
+        }
+
+        public void AddProduct(HashSet<string> Ingredients, ProductModel ProductName, string FileName)
+        {
+            foreach (IFileConnection txtConnection in GlobalConfig.Connection)
+            {
+                txtConnection.AddProduct(Ingredients, ProductName, FileName);
+            }
+        }
     }
 }

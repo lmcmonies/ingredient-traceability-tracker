@@ -33,9 +33,12 @@ namespace TraceabilityUI
             this.ProductIngredientsListBox = new System.Windows.Forms.ListBox();
             this.AddProductButton = new System.Windows.Forms.Button();
             this.AddIngredientsLabel = new System.Windows.Forms.Label();
-            this.PoductTextBox = new System.Windows.Forms.RichTextBox();
+            this.ProductTextBox = new System.Windows.Forms.RichTextBox();
             this.AllIngredientsListBox = new System.Windows.Forms.ListBox();
             this.DeleteProduct = new System.Windows.Forms.Button();
+            this.CreateProduct = new System.Windows.Forms.Button();
+            this.AllIngredientsLabel = new System.Windows.Forms.Label();
+            this.ProductIngredientsLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ProductIngredientsListBox
@@ -44,42 +47,43 @@ namespace TraceabilityUI
             this.ProductIngredientsListBox.Font = new System.Drawing.Font("Segoe UI Semilight", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProductIngredientsListBox.FormattingEnabled = true;
             this.ProductIngredientsListBox.ItemHeight = 50;
-            this.ProductIngredientsListBox.Location = new System.Drawing.Point(514, 235);
+            this.ProductIngredientsListBox.Location = new System.Drawing.Point(514, 287);
             this.ProductIngredientsListBox.Name = "ProductIngredientsListBox";
-            this.ProductIngredientsListBox.Size = new System.Drawing.Size(334, 250);
+            this.ProductIngredientsListBox.Size = new System.Drawing.Size(306, 250);
             this.ProductIngredientsListBox.TabIndex = 1;
             // 
             // AddProductButton
             // 
             this.AddProductButton.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddProductButton.Location = new System.Drawing.Point(352, 305);
+            this.AddProductButton.Location = new System.Drawing.Point(352, 287);
             this.AddProductButton.Name = "AddProductButton";
             this.AddProductButton.Size = new System.Drawing.Size(156, 47);
             this.AddProductButton.TabIndex = 7;
             this.AddProductButton.Text = "Add";
             this.AddProductButton.UseVisualStyleBackColor = true;
+            this.AddProductButton.Click += new System.EventHandler(this.AddProductButton_Click);
             // 
             // AddIngredientsLabel
             // 
             this.AddIngredientsLabel.AutoSize = true;
             this.AddIngredientsLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddIngredientsLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.AddIngredientsLabel.Location = new System.Drawing.Point(331, 43);
+            this.AddIngredientsLabel.Location = new System.Drawing.Point(298, 41);
             this.AddIngredientsLabel.Name = "AddIngredientsLabel";
-            this.AddIngredientsLabel.Size = new System.Drawing.Size(203, 45);
+            this.AddIngredientsLabel.Size = new System.Drawing.Size(298, 45);
             this.AddIngredientsLabel.TabIndex = 6;
-            this.AddIngredientsLabel.Text = "New Product";
+            this.AddIngredientsLabel.Text = "New Product Name";
             // 
-            // PoductTextBox
+            // ProductTextBox
             // 
-            this.PoductTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PoductTextBox.Font = new System.Drawing.Font("Segoe UI Semilight", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PoductTextBox.Location = new System.Drawing.Point(281, 110);
-            this.PoductTextBox.Name = "PoductTextBox";
-            this.PoductTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.PoductTextBox.Size = new System.Drawing.Size(266, 53);
-            this.PoductTextBox.TabIndex = 5;
-            this.PoductTextBox.Text = "";
+            this.ProductTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ProductTextBox.Font = new System.Drawing.Font("Segoe UI Semilight", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductTextBox.Location = new System.Drawing.Point(235, 110);
+            this.ProductTextBox.Name = "ProductTextBox";
+            this.ProductTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.ProductTextBox.Size = new System.Drawing.Size(361, 53);
+            this.ProductTextBox.TabIndex = 5;
+            this.ProductTextBox.Text = "";
             // 
             // AllIngredientsListBox
             // 
@@ -87,20 +91,54 @@ namespace TraceabilityUI
             this.AllIngredientsListBox.Font = new System.Drawing.Font("Segoe UI Semilight", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AllIngredientsListBox.FormattingEnabled = true;
             this.AllIngredientsListBox.ItemHeight = 50;
-            this.AllIngredientsListBox.Location = new System.Drawing.Point(12, 235);
+            this.AllIngredientsListBox.Location = new System.Drawing.Point(34, 287);
             this.AllIngredientsListBox.Name = "AllIngredientsListBox";
-            this.AllIngredientsListBox.Size = new System.Drawing.Size(334, 250);
+            this.AllIngredientsListBox.Size = new System.Drawing.Size(312, 250);
             this.AllIngredientsListBox.TabIndex = 8;
             // 
             // DeleteProduct
             // 
             this.DeleteProduct.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteProduct.Location = new System.Drawing.Point(352, 376);
+            this.DeleteProduct.Location = new System.Drawing.Point(352, 382);
             this.DeleteProduct.Name = "DeleteProduct";
             this.DeleteProduct.Size = new System.Drawing.Size(156, 47);
             this.DeleteProduct.TabIndex = 9;
             this.DeleteProduct.Text = "Delete";
             this.DeleteProduct.UseVisualStyleBackColor = true;
+            this.DeleteProduct.Click += new System.EventHandler(this.DeleteProduct_Click);
+            // 
+            // CreateProduct
+            // 
+            this.CreateProduct.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateProduct.Location = new System.Drawing.Point(352, 471);
+            this.CreateProduct.Name = "CreateProduct";
+            this.CreateProduct.Size = new System.Drawing.Size(156, 47);
+            this.CreateProduct.TabIndex = 10;
+            this.CreateProduct.Text = "Create";
+            this.CreateProduct.UseVisualStyleBackColor = true;
+            this.CreateProduct.Click += new System.EventHandler(this.CreateProduct_Click);
+            // 
+            // AllIngredientsLabel
+            // 
+            this.AllIngredientsLabel.AutoSize = true;
+            this.AllIngredientsLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AllIngredientsLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.AllIngredientsLabel.Location = new System.Drawing.Point(97, 230);
+            this.AllIngredientsLabel.Name = "AllIngredientsLabel";
+            this.AllIngredientsLabel.Size = new System.Drawing.Size(221, 45);
+            this.AllIngredientsLabel.TabIndex = 11;
+            this.AllIngredientsLabel.Text = "All Ingredients";
+            // 
+            // ProductIngredientsLabel
+            // 
+            this.ProductIngredientsLabel.AutoSize = true;
+            this.ProductIngredientsLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductIngredientsLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.ProductIngredientsLabel.Location = new System.Drawing.Point(537, 230);
+            this.ProductIngredientsLabel.Name = "ProductIngredientsLabel";
+            this.ProductIngredientsLabel.Size = new System.Drawing.Size(296, 45);
+            this.ProductIngredientsLabel.TabIndex = 12;
+            this.ProductIngredientsLabel.Text = "Product Ingredients";
             // 
             // ProductsForm
             // 
@@ -108,15 +146,18 @@ namespace TraceabilityUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
             this.ClientSize = new System.Drawing.Size(860, 584);
+            this.Controls.Add(this.ProductIngredientsLabel);
+            this.Controls.Add(this.AllIngredientsLabel);
+            this.Controls.Add(this.CreateProduct);
             this.Controls.Add(this.DeleteProduct);
             this.Controls.Add(this.AllIngredientsListBox);
             this.Controls.Add(this.AddProductButton);
             this.Controls.Add(this.AddIngredientsLabel);
-            this.Controls.Add(this.PoductTextBox);
+            this.Controls.Add(this.ProductTextBox);
             this.Controls.Add(this.ProductIngredientsListBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProductsForm";
-            this.Text = "Products";
+            this.Text = "Add Product";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,8 +168,11 @@ namespace TraceabilityUI
         private System.Windows.Forms.ListBox ProductIngredientsListBox;
         private System.Windows.Forms.Button AddProductButton;
         private System.Windows.Forms.Label AddIngredientsLabel;
-        private System.Windows.Forms.RichTextBox PoductTextBox;
+        private System.Windows.Forms.RichTextBox ProductTextBox;
         private System.Windows.Forms.ListBox AllIngredientsListBox;
         private System.Windows.Forms.Button DeleteProduct;
+        private System.Windows.Forms.Button CreateProduct;
+        private System.Windows.Forms.Label AllIngredientsLabel;
+        private System.Windows.Forms.Label ProductIngredientsLabel;
     }
 }

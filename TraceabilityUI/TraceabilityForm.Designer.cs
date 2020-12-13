@@ -45,6 +45,10 @@ namespace TraceabilityUI
             this.BakedListBox = new System.Windows.Forms.ListBox();
             this.ProductsLabel = new System.Windows.Forms.Label();
             this.ProductsListBox = new System.Windows.Forms.ListBox();
+            this.DeleteBakedProduct = new System.Windows.Forms.Button();
+            this.AddBakedProduct = new System.Windows.Forms.Button();
+            this.CreateTraceability = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SideMenuPanel.SuspendLayout();
             this.OptionsSubMenuPanel.SuspendLayout();
             this.LogoPanel.SuspendLayout();
@@ -83,6 +87,7 @@ namespace TraceabilityUI
             this.TraceabilitySheetsButton.FlatAppearance.BorderSize = 0;
             this.TraceabilitySheetsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.TraceabilitySheetsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TraceabilitySheetsButton.Font = new System.Drawing.Font("Segoe UI Semilight", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TraceabilitySheetsButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.TraceabilitySheetsButton.Location = new System.Drawing.Point(0, 80);
             this.TraceabilitySheetsButton.Name = "TraceabilitySheetsButton";
@@ -100,13 +105,14 @@ namespace TraceabilityUI
             this.ProductsButton.FlatAppearance.BorderSize = 0;
             this.ProductsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.ProductsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ProductsButton.Font = new System.Drawing.Font("Segoe UI Semilight", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProductsButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.ProductsButton.Location = new System.Drawing.Point(0, 40);
             this.ProductsButton.Name = "ProductsButton";
             this.ProductsButton.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.ProductsButton.Size = new System.Drawing.Size(250, 40);
             this.ProductsButton.TabIndex = 1;
-            this.ProductsButton.Text = "Products";
+            this.ProductsButton.Text = "Add Product";
             this.ProductsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ProductsButton.UseVisualStyleBackColor = true;
             this.ProductsButton.Click += new System.EventHandler(this.ProductsButton_Click);
@@ -117,13 +123,14 @@ namespace TraceabilityUI
             this.IngredientsButton.FlatAppearance.BorderSize = 0;
             this.IngredientsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.IngredientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.IngredientsButton.Font = new System.Drawing.Font("Segoe UI Semilight", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IngredientsButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.IngredientsButton.Location = new System.Drawing.Point(0, 0);
             this.IngredientsButton.Name = "IngredientsButton";
             this.IngredientsButton.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.IngredientsButton.Size = new System.Drawing.Size(250, 40);
             this.IngredientsButton.TabIndex = 0;
-            this.IngredientsButton.Text = "Ingredients";
+            this.IngredientsButton.Text = "Add Ingredient";
             this.IngredientsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.IngredientsButton.UseVisualStyleBackColor = true;
             this.IngredientsButton.Click += new System.EventHandler(this.IngredientsButton_Click);
@@ -134,7 +141,7 @@ namespace TraceabilityUI
             this.OptionsButton.FlatAppearance.BorderSize = 0;
             this.OptionsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
             this.OptionsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OptionsButton.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsButton.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OptionsButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.OptionsButton.Location = new System.Drawing.Point(0, 68);
             this.OptionsButton.Name = "OptionsButton";
@@ -174,6 +181,10 @@ namespace TraceabilityUI
             // ChildFormPanel
             // 
             this.ChildFormPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(35)))));
+            this.ChildFormPanel.Controls.Add(this.dateTimePicker1);
+            this.ChildFormPanel.Controls.Add(this.CreateTraceability);
+            this.ChildFormPanel.Controls.Add(this.AddBakedProduct);
+            this.ChildFormPanel.Controls.Add(this.DeleteBakedProduct);
             this.ChildFormPanel.Controls.Add(this.TitleBar);
             this.ChildFormPanel.Controls.Add(this.BakedLabel);
             this.ChildFormPanel.Controls.Add(this.BakedListBox);
@@ -210,7 +221,7 @@ namespace TraceabilityUI
             this.BakedLabel.AutoSize = true;
             this.BakedLabel.Font = new System.Drawing.Font("Segoe UI Light", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BakedLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.BakedLabel.Location = new System.Drawing.Point(459, 123);
+            this.BakedLabel.Location = new System.Drawing.Point(566, 281);
             this.BakedLabel.Name = "BakedLabel";
             this.BakedLabel.Size = new System.Drawing.Size(249, 59);
             this.BakedLabel.TabIndex = 4;
@@ -219,11 +230,12 @@ namespace TraceabilityUI
             // BakedListBox
             // 
             this.BakedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BakedListBox.Font = new System.Drawing.Font("Segoe UI Semilight", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BakedListBox.FormattingEnabled = true;
-            this.BakedListBox.ItemHeight = 20;
-            this.BakedListBox.Location = new System.Drawing.Point(446, 186);
+            this.BakedListBox.ItemHeight = 45;
+            this.BakedListBox.Location = new System.Drawing.Point(545, 374);
             this.BakedListBox.Name = "BakedListBox";
-            this.BakedListBox.Size = new System.Drawing.Size(281, 300);
+            this.BakedListBox.Size = new System.Drawing.Size(281, 270);
             this.BakedListBox.TabIndex = 3;
             // 
             // ProductsLabel
@@ -231,7 +243,7 @@ namespace TraceabilityUI
             this.ProductsLabel.AutoSize = true;
             this.ProductsLabel.Font = new System.Drawing.Font("Segoe UI Light", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProductsLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.ProductsLabel.Location = new System.Drawing.Point(83, 123);
+            this.ProductsLabel.Location = new System.Drawing.Point(132, 281);
             this.ProductsLabel.Name = "ProductsLabel";
             this.ProductsLabel.Size = new System.Drawing.Size(181, 59);
             this.ProductsLabel.TabIndex = 2;
@@ -240,12 +252,57 @@ namespace TraceabilityUI
             // ProductsListBox
             // 
             this.ProductsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ProductsListBox.Font = new System.Drawing.Font("Segoe UI Semilight", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProductsListBox.FormattingEnabled = true;
-            this.ProductsListBox.ItemHeight = 20;
-            this.ProductsListBox.Location = new System.Drawing.Point(31, 186);
+            this.ProductsListBox.ItemHeight = 45;
+            this.ProductsListBox.Location = new System.Drawing.Point(63, 374);
             this.ProductsListBox.Name = "ProductsListBox";
-            this.ProductsListBox.Size = new System.Drawing.Size(286, 300);
+            this.ProductsListBox.Size = new System.Drawing.Size(286, 270);
             this.ProductsListBox.TabIndex = 1;
+            this.ProductsListBox.SelectedIndexChanged += new System.EventHandler(this.ProductsListBox_SelectedIndexChanged);
+            // 
+            // DeleteBakedProduct
+            // 
+            this.DeleteBakedProduct.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteBakedProduct.Location = new System.Drawing.Point(368, 476);
+            this.DeleteBakedProduct.Name = "DeleteBakedProduct";
+            this.DeleteBakedProduct.Size = new System.Drawing.Size(159, 47);
+            this.DeleteBakedProduct.TabIndex = 10;
+            this.DeleteBakedProduct.Text = "Delete";
+            this.DeleteBakedProduct.UseVisualStyleBackColor = true;
+            this.DeleteBakedProduct.Click += new System.EventHandler(this.DeleteBakedProduct_Click);
+            // 
+            // AddBakedProduct
+            // 
+            this.AddBakedProduct.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddBakedProduct.Location = new System.Drawing.Point(368, 374);
+            this.AddBakedProduct.Name = "AddBakedProduct";
+            this.AddBakedProduct.Size = new System.Drawing.Size(159, 47);
+            this.AddBakedProduct.TabIndex = 11;
+            this.AddBakedProduct.Text = "Add";
+            this.AddBakedProduct.UseVisualStyleBackColor = true;
+            this.AddBakedProduct.Click += new System.EventHandler(this.AddBakedProduct_Click);
+            // 
+            // CreateTraceability
+            // 
+            this.CreateTraceability.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateTraceability.Location = new System.Drawing.Point(368, 578);
+            this.CreateTraceability.Name = "CreateTraceability";
+            this.CreateTraceability.Size = new System.Drawing.Size(159, 47);
+            this.CreateTraceability.TabIndex = 12;
+            this.CreateTraceability.Text = "Create";
+            this.CreateTraceability.UseVisualStyleBackColor = true;
+            this.CreateTraceability.Click += new System.EventHandler(this.CreateTraceability_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI Semilight", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(63, 162);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(271, 43);
+            this.dateTimePicker1.TabIndex = 13;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // TraceabilityForm
             // 
@@ -291,6 +348,10 @@ namespace TraceabilityUI
         private System.Windows.Forms.ListBox BakedListBox;
         private System.Windows.Forms.Panel TitleBar;
         private System.Windows.Forms.Label TitleLabel;
+        private System.Windows.Forms.Button AddBakedProduct;
+        private System.Windows.Forms.Button DeleteBakedProduct;
+        private System.Windows.Forms.Button CreateTraceability;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

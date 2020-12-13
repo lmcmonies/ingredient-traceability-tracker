@@ -32,7 +32,16 @@ namespace TraceabilityLibrary
             return File.ReadAllLines(file).ToHashSet();
         }
 
-
+        public static List<string> LoadProductFile(this string file)
+        {
+            //checks to see if the file specified exists. If not, emtpty string list returned
+            if (!File.Exists(file))
+            {
+                return new List<string>();
+            }
+            //adding each line as a string to an array and then converting to a list. 
+            return File.ReadAllLines(file).ToList();
+        }
         /// <summary>
         /// Takes the string list in, iterates through each line and delimits
         /// on the comma and adding each element of the line to a string array.
@@ -64,6 +73,58 @@ namespace TraceabilityLibrary
             return Ingredients;
         }
 
+        public static Dictionary<ProductModel,HashSet<string>> ChangeToProduct(this List<string> lines)
+        {
+            Dictionary<ProductModel,HashSet<string>> Products = new Dictionary<ProductModel,HashSet<string>>();
+            HashSet<string> Ingredients = new HashSet<string>();
+
+            //iterates through the lines list
+            foreach (string l in lines)
+            {
+                //checks the line is not empty
+                if (l != "")
+                {
+                    //comma delimiting the line
+                    string[] array = l.Split(',');
+                    //creating an Ingredient object from the comma delimited string
+                    ProductModel Product = new ProductModel();
+                    Product.ProductName = array[0];
+                    for (int i = 1; i < array.Length; i++)
+                    {
+                        Ingredients.Add(array[i]);
+                    }
+                    
+                    //adds the created object to the list of type IngredientModel
+                    Products.Add(Product,Ingredients);
+                }
+            }
+            //returns the list of Ingredients
+            return Products;
+        }
+        public static HashSet<SheetModel> ChangeToSheet(this HashSet<string> lines)
+        {
+            
+            HashSet<SheetModel> Sheets = new HashSet<SheetModel>();
+
+            //iterates through the lines list
+            foreach (string l in lines)
+            {
+                //checks the line is not empty
+                if (l != "")
+                {
+                    //comma delimiting the line
+                    string[] array = l.Split(',');
+                    SheetModel Sheet = new SheetModel();
+                    //Ingredient.Id = int.Parse(array[0]);
+                    Sheet.SheetName = array[0];
+                    Sheets.Add(Sheet);
+                }
+            }
+            //returns the list of Ingredients
+            return Sheets;
+        }
+
+
         /// <summary>
         /// Takes the Address list and file name in.
         /// Iterates through list adding each value(Id,Name,Url) in a 
@@ -94,5 +155,22 @@ namespace TraceabilityLibrary
                 Console.WriteLine(ex);
             }
         }
+        public static void SaveProductToFile(this Dictionary<ProductModel, HashSet<string>> Product, string FileName)
+        {
+            List<string> FormattedStrings = new List<string>();
+            string FormattedString = "";
+            foreach (KeyValuePair<ProductModel, HashSet<string>> entry in Product)
+            {
+                FormattedString += entry.Key.ProductName + ",";
+                    foreach (string item in entry.Value)
+                    {
+                        FormattedString += item + ",";
+                    }
+                string FinalString = FormattedString.Remove(FormattedString.Length - 1);
+                FormattedStrings.Add(FinalString);
+                FormattedString = "";
+            }
+            File.WriteAllLines(FileName.FilePath(), FormattedStrings);
+            }
     }
 }

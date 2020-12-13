@@ -16,5 +16,11 @@ namespace TraceabilityLibrary
 
         //Retrieve All Ingredients From Ingredients File
         HashSet<IngredientModel> GetAllIngredients(string FileName);
+
+        ProductModel AddProduct(HashSet<string> Ingredients, ProductModel Product, string FileName);
+
+        Dictionary<ProductModel, HashSet<string>> GetAllProducts(string FileName);
+
+        HashSet<SheetModel> GetAllSheets(string FileName);
     }
 }

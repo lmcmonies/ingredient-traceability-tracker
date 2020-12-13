@@ -119,7 +119,7 @@ namespace TraceabilityUI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IngredientsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ingredients";
+            this.Text = "Add Ingredient";
             this.ResumeLayout(false);
             this.PerformLayout();
 
