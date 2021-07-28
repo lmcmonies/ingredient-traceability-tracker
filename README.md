@@ -1,2 +1,2 @@
-# Traceability
-Bakery Traceability Automation. 
+# ingredient-traceability-tracker
+Ingredient Traceability Tracker.
