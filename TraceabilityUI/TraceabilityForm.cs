@@ -16,9 +16,13 @@ namespace TraceabilityUI
     public partial class TraceabilityForm : Form
     {
         readonly string ProductsFile = "Products.csv";
+        readonly string SheetsFile = "Sheets.csv";
         Dictionary<ProductModel,HashSet<string>> Products = new Dictionary<ProductModel,HashSet<string>>();
         List<ProductModel> ProductsList = new List<ProductModel>();
         HashSet<string> BakedProducts = new HashSet<string>();
+        List<SheetModel> Sheets = new List<SheetModel>();
+
+    
         public TraceabilityForm()
         {
             InitializeComponent();
@@ -35,10 +39,13 @@ namespace TraceabilityUI
 
         private void LoadData()
         {
+            ProductsList.Clear();
             foreach (IFileConnection connection in GlobalConfig.Connection)
             {
                 Products = connection.GetAllProducts(ProductsFile);
+                //Sheets = connection.GetAllSheets()
             }
+            //DisplayAllProducts();
         }
 
         public void DisplayAllProducts()
@@ -46,14 +53,17 @@ namespace TraceabilityUI
             foreach (KeyValuePair<ProductModel, HashSet<string>> entry in Products)
             {
                 ProductsList.Add(entry.Key);
-            }   
-                
-            {
-                if (ProductsList != null)
-                    ProductsListBox.DataSource = ProductsList;
-                    ProductsListBox.DisplayMember = "DisplayProduct";
             }
+
+
+            if (ProductsList != null)
+                    ProductsListBox.DataSource = null;
+                    ProductsListBox.DataSource = ProductsList;
+           
+                ProductsListBox.DisplayMember = "DisplayProduct";
+           
         }
+
 
         private void OptionsButton_Click(object sender, EventArgs e)
         {
@@ -96,6 +106,12 @@ namespace TraceabilityUI
                 subMenu.Visible = false;
             }
         }
+        private void LoadDataFromChild()
+        {
+            LoadData();
+            DisplayAllProducts();
+            
+        }
 
         private void IngredientsButton_Click(object sender, EventArgs e)
         {
@@ -110,16 +126,22 @@ namespace TraceabilityUI
         private void ProductsButton_Click(object sender, EventArgs e)
         {
             ProductsForm ProductsForm = new ProductsForm();
+            ProductsList.Clear();
             openChildForm(ProductsForm);
             hideSubMenu();
-            LoadData();
-            DisplayAllProducts();
+            ProductsForm.UpdateProgress = this.LoadDataFromChild;
         }
 
         private void TraceabilitySheetsButton_Click(object sender, EventArgs e)
         {
             SheetsForm SheetsForm = new SheetsForm();
             openChildForm(SheetsForm);
+            hideSubMenu();
+        }
+        private void AddBatchNumberButton_Click(object sender, EventArgs e)
+        {
+            BatchNumberForm BatchNumber = new BatchNumberForm();
+            openChildForm(BatchNumber);
             hideSubMenu();
         }
 
@@ -183,14 +205,31 @@ namespace TraceabilityUI
             BakedListBox.DataSource = BakedProducts.ToList();
         }
 
+        private void DisplayBakedProducts()
+        {
+            if (BakedProducts != null)
+            {
+                BakedListBox.DataSource = BakedProducts.ToList();
+                BakedListBox.DisplayMember = "DisplayProduct";
+            }
+        }
         private void DeleteBakedProduct_Click(object sender, EventArgs e)
         {
-
+            string Product = (string)BakedListBox.SelectedItem;
+            if (Product != null)
+            {
+                BakedProducts.Remove(Product);
+            }
+            LoadData();
+            DisplayBakedProducts();
+          
         }
 
         private void CreateTraceability_Click(object sender, EventArgs e)
         {
 
         }
+
+       
     }
 }

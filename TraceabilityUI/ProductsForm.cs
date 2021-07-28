@@ -11,8 +11,10 @@ using TraceabilityLibrary;
 
 namespace TraceabilityUI
 {
+
     public partial class ProductsForm : Form
     {
+        public Action UpdateProgress;
         readonly string IngredientFile = "Ingredients.csv";
         readonly string ProductsFile = "Products.csv";
         HashSet<IngredientModel> Ingredients = new HashSet<IngredientModel>();
@@ -23,6 +25,8 @@ namespace TraceabilityUI
             LoadData();
             DisplayAllIngredients();
         }
+    
+
 
         private void LoadData()
         {
@@ -30,6 +34,12 @@ namespace TraceabilityUI
             {
                 Ingredients = connection.GetAllIngredients(IngredientFile);
             }
+        }
+
+        private void LoadDataParent()
+        {
+            this.UpdateProgress();
+           
         }
 
         public void DisplayAllIngredients()
@@ -76,12 +86,13 @@ namespace TraceabilityUI
             AddProduct(ProductIngredients, Product, ProductsFile);
         }
 
-        public void AddProduct(HashSet<string> Ingredients, ProductModel ProductName, string FileName)
+        public void AddProduct(HashSet<string> ProdIngredients, ProductModel ProductName, string FileName)
         {
             foreach (IFileConnection txtConnection in GlobalConfig.Connection)
             {
-                txtConnection.AddProduct(Ingredients, ProductName, FileName);
+                txtConnection.AddProduct(ProdIngredients, ProductName, FileName);
             }
+            LoadDataParent();
         }
     }
 }

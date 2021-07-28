@@ -93,11 +93,12 @@ namespace TraceabilityLibrary
                     {
                         Ingredients.Add(array[i]);
                     }
-                    
                     //adds the created object to the list of type IngredientModel
-                    Products.Add(Product,Ingredients);
+                    Products.Add(Product,new HashSet<string>(Ingredients));
                 }
+                Ingredients.Clear();  
             }
+            
             //returns the list of Ingredients
             return Products;
         }
@@ -122,6 +123,44 @@ namespace TraceabilityLibrary
             }
             //returns the list of Ingredients
             return Sheets;
+        }
+
+        public static Dictionary<IngredientModel, Tuple<BatchNumberModel, DateModel>> ChangeToBatchNumber(this List<string> lines)
+        {
+            Dictionary<IngredientModel, Tuple<BatchNumberModel,DateModel>> BatchNumbers = 
+                new Dictionary<IngredientModel, Tuple<BatchNumberModel,DateModel>>();
+            
+            //iterates through the lines list
+            foreach (string l in lines)
+            {
+                //checks the line is not empty
+                if (l != "")
+                {
+                    //comma delimiting the line
+                    string[] array = l.Split(',');
+                    //creating an Ingredient object from the comma delimited string
+                    IngredientModel Ingredient = new IngredientModel
+                    {
+                        IngredientName = array[0]
+                    };
+                    BatchNumberModel Batch = new BatchNumberModel
+                    {
+                        BatchNumber = array[1]
+                        
+                    };
+                    DateModel Date = new DateModel
+                    {
+                        Date = array[2]
+                    };
+
+                    
+                    var tple = Tuple.Create(Batch, Date);
+                    //adds the created object to the list of type IngredientModel
+                    BatchNumbers.Add(Ingredient,tple);
+                }
+            }
+            //returns the list of Ingredients
+            return BatchNumbers;
         }
 
 
@@ -172,5 +211,51 @@ namespace TraceabilityLibrary
             }
             File.WriteAllLines(FileName.FilePath(), FormattedStrings);
             }
+        public static void SaveSheetToFile(this HashSet<SheetModel> Sheets, string FileName)
+        {
+            HashSet<string> lines = new HashSet<string>();
+
+            try
+            {
+                foreach (SheetModel Sheet in Sheets)
+                {
+                    lines.Add($"{Sheet.SheetName}");
+                }
+                //write all lines to the specificed file.
+                File.WriteAllLines(FileName.FilePath(), lines);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+        public static void SaveBatchNumbersToFile(this Dictionary<IngredientModel, Tuple<BatchNumberModel,DateModel>> 
+            BatchNums, string FileName)
+        {
+            List<string> lines = new List<string>();
+            try
+            {
+                foreach(KeyValuePair<IngredientModel, Tuple<BatchNumberModel,DateModel>> entry in BatchNums)
+                {
+                    lines.Add($"{entry.Key.IngredientName},{entry.Value.Item1.BatchNumber},{entry.Value.Item2.Date}");
+                }
+                //write all lines to the specificed file.
+                File.WriteAllLines(FileName.FilePath(), lines);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
     }
+
 }

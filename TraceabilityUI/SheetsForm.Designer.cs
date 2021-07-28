@@ -40,12 +40,12 @@ namespace TraceabilityUI
             // SheetsListBox
             // 
             this.SheetsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SheetsListBox.Font = new System.Drawing.Font("Segoe UI Semilight", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SheetsListBox.Font = new System.Drawing.Font("Segoe UI Semilight", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SheetsListBox.FormattingEnabled = true;
-            this.SheetsListBox.ItemHeight = 45;
-            this.SheetsListBox.Location = new System.Drawing.Point(494, 204);
+            this.SheetsListBox.ItemHeight = 54;
+            this.SheetsListBox.Location = new System.Drawing.Point(471, 137);
             this.SheetsListBox.Name = "SheetsListBox";
-            this.SheetsListBox.Size = new System.Drawing.Size(286, 270);
+            this.SheetsListBox.Size = new System.Drawing.Size(320, 324);
             this.SheetsListBox.TabIndex = 2;
             // 
             // SheetsLabel
@@ -53,7 +53,7 @@ namespace TraceabilityUI
             this.SheetsLabel.AutoSize = true;
             this.SheetsLabel.Font = new System.Drawing.Font("Segoe UI Light", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SheetsLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.SheetsLabel.Location = new System.Drawing.Point(570, 131);
+            this.SheetsLabel.Location = new System.Drawing.Point(568, 75);
             this.SheetsLabel.Name = "SheetsLabel";
             this.SheetsLabel.Size = new System.Drawing.Size(143, 59);
             this.SheetsLabel.TabIndex = 5;
@@ -62,19 +62,20 @@ namespace TraceabilityUI
             // AddNewSheetButton
             // 
             this.AddNewSheetButton.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddNewSheetButton.Location = new System.Drawing.Point(146, 370);
+            this.AddNewSheetButton.Location = new System.Drawing.Point(144, 336);
             this.AddNewSheetButton.Name = "AddNewSheetButton";
             this.AddNewSheetButton.Size = new System.Drawing.Size(140, 47);
             this.AddNewSheetButton.TabIndex = 8;
             this.AddNewSheetButton.Text = "Add";
             this.AddNewSheetButton.UseVisualStyleBackColor = true;
+            this.AddNewSheetButton.Click += new System.EventHandler(this.AddNewSheetButton_Click);
             // 
             // NewSheetLabel
             // 
             this.NewSheetLabel.AutoSize = true;
             this.NewSheetLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewSheetLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.NewSheetLabel.Location = new System.Drawing.Point(147, 222);
+            this.NewSheetLabel.Location = new System.Drawing.Point(145, 188);
             this.NewSheetLabel.Name = "NewSheetLabel";
             this.NewSheetLabel.Size = new System.Drawing.Size(172, 45);
             this.NewSheetLabel.TabIndex = 7;
@@ -84,7 +85,7 @@ namespace TraceabilityUI
             // 
             this.NewSheetTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.NewSheetTextBox.Font = new System.Drawing.Font("Segoe UI Semilight", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewSheetTextBox.Location = new System.Drawing.Point(84, 290);
+            this.NewSheetTextBox.Location = new System.Drawing.Point(82, 256);
             this.NewSheetTextBox.Name = "NewSheetTextBox";
             this.NewSheetTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.NewSheetTextBox.Size = new System.Drawing.Size(266, 53);

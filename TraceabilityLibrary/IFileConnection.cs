@@ -22,5 +22,11 @@ namespace TraceabilityLibrary
         Dictionary<ProductModel, HashSet<string>> GetAllProducts(string FileName);
 
         HashSet<SheetModel> GetAllSheets(string FileName);
+
+        SheetModel AddSheet(SheetModel Sheet, string FileName);
+
+        Dictionary<IngredientModel, Tuple<BatchNumberModel,DateModel>> UpdateBatchNumber(string FileName, string Ingredient, string BatchNum, string Date );
+
+        Dictionary<IngredientModel, Tuple<BatchNumberModel,DateModel>> GetAllBatchNumbers(string FileName);
     }
 }

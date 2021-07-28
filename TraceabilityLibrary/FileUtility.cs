@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace TraceabilityLibrary
 {
     public class FileUtility : IFileConnection
@@ -67,6 +67,39 @@ namespace TraceabilityLibrary
         public HashSet<SheetModel> GetAllSheets(string FileName)
         {
             return FileName.FilePath().LoadFile().ChangeToSheet();
+        }
+
+        public SheetModel AddSheet(SheetModel Sheet, string FileName)
+        {
+            HashSet<SheetModel> Sheets =
+            FileName.FilePath().LoadFile().ChangeToSheet();
+            string FilePath = @"C:\ProgramData\Traceability\TraceabilitySheets\";
+            File.Create(FilePath + Sheet.SheetName + ".csv").Dispose();
+            Sheets.Add(Sheet);
+            Sheets.SaveSheetToFile(FileName);
+            return Sheet;
+        }
+
+        public Dictionary<IngredientModel, Tuple<BatchNumberModel,DateModel>> GetAllBatchNumbers(string FileName)
+        {
+            return FileName.FilePath().LoadProductFile().ChangeToBatchNumber();
+        }
+
+        public Dictionary<IngredientModel,Tuple<BatchNumberModel,DateModel>> UpdateBatchNumber(string FileName, string Ingredient, string BatchNum, string Date)
+        {
+            Dictionary<IngredientModel, Tuple<BatchNumberModel,DateModel>> BatchNumbers
+            = FileName.FilePath().LoadProductFile().ChangeToBatchNumber();
+            foreach(KeyValuePair<IngredientModel,Tuple<BatchNumberModel,DateModel>> entry in BatchNumbers)
+            {
+                if(Ingredient == entry.Key.IngredientName)
+                {
+                    entry.Value.Item1.BatchNumber = BatchNum;
+                    entry.Value.Item2.Date = Date;
+                }
+                
+            }
+            BatchNumbers.SaveBatchNumbersToFile(FileName);
+            return BatchNumbers;
         }
     }
 }

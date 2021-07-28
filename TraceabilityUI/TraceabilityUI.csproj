@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatchNumberForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BatchNumberForm.Designer.cs">
+      <DependentUpon>BatchNumberForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IngredientsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BatchNumberForm.resx">
+      <DependentUpon>BatchNumberForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IngredientsForm.resx">
       <DependentUpon>IngredientsForm.cs</DependentUpon>
     </EmbeddedResource>

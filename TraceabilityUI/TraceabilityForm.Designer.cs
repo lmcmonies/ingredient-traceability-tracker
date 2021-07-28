@@ -31,6 +31,7 @@ namespace TraceabilityUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TraceabilityForm));
             this.SideMenuPanel = new System.Windows.Forms.Panel();
+            this.AddBatchNumberButton = new System.Windows.Forms.Button();
             this.OptionsSubMenuPanel = new System.Windows.Forms.Panel();
             this.TraceabilitySheetsButton = new System.Windows.Forms.Button();
             this.ProductsButton = new System.Windows.Forms.Button();
@@ -39,16 +40,16 @@ namespace TraceabilityUI
             this.LogoPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.ChildFormPanel = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.CreateTraceability = new System.Windows.Forms.Button();
+            this.AddBakedProduct = new System.Windows.Forms.Button();
+            this.DeleteBakedProduct = new System.Windows.Forms.Button();
             this.TitleBar = new System.Windows.Forms.Panel();
             this.TitleLabel = new System.Windows.Forms.Label();
             this.BakedLabel = new System.Windows.Forms.Label();
             this.BakedListBox = new System.Windows.Forms.ListBox();
             this.ProductsLabel = new System.Windows.Forms.Label();
             this.ProductsListBox = new System.Windows.Forms.ListBox();
-            this.DeleteBakedProduct = new System.Windows.Forms.Button();
-            this.AddBakedProduct = new System.Windows.Forms.Button();
-            this.CreateTraceability = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SideMenuPanel.SuspendLayout();
             this.OptionsSubMenuPanel.SuspendLayout();
             this.LogoPanel.SuspendLayout();
@@ -69,16 +70,36 @@ namespace TraceabilityUI
             this.SideMenuPanel.Size = new System.Drawing.Size(250, 680);
             this.SideMenuPanel.TabIndex = 0;
             // 
+            // AddBatchNumberButton
+            // 
+            this.AddBatchNumberButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(39)))));
+            this.AddBatchNumberButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddBatchNumberButton.FlatAppearance.BorderSize = 0;
+            this.AddBatchNumberButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
+            this.AddBatchNumberButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddBatchNumberButton.Font = new System.Drawing.Font("Segoe UI Semilight", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddBatchNumberButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.AddBatchNumberButton.Location = new System.Drawing.Point(0, 126);
+            this.AddBatchNumberButton.Name = "AddBatchNumberButton";
+            this.AddBatchNumberButton.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.AddBatchNumberButton.Size = new System.Drawing.Size(250, 40);
+            this.AddBatchNumberButton.TabIndex = 3;
+            this.AddBatchNumberButton.Text = "Add Batch No.";
+            this.AddBatchNumberButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddBatchNumberButton.UseVisualStyleBackColor = false;
+            this.AddBatchNumberButton.Click += new System.EventHandler(this.AddBatchNumberButton_Click);
+            // 
             // OptionsSubMenuPanel
             // 
             this.OptionsSubMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(39)))));
+            this.OptionsSubMenuPanel.Controls.Add(this.AddBatchNumberButton);
             this.OptionsSubMenuPanel.Controls.Add(this.TraceabilitySheetsButton);
             this.OptionsSubMenuPanel.Controls.Add(this.ProductsButton);
             this.OptionsSubMenuPanel.Controls.Add(this.IngredientsButton);
             this.OptionsSubMenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.OptionsSubMenuPanel.Location = new System.Drawing.Point(0, 113);
+            this.OptionsSubMenuPanel.Location = new System.Drawing.Point(0, 125);
             this.OptionsSubMenuPanel.Name = "OptionsSubMenuPanel";
-            this.OptionsSubMenuPanel.Size = new System.Drawing.Size(250, 124);
+            this.OptionsSubMenuPanel.Size = new System.Drawing.Size(250, 171);
             this.OptionsSubMenuPanel.TabIndex = 2;
             // 
             // TraceabilitySheetsButton
@@ -92,7 +113,7 @@ namespace TraceabilityUI
             this.TraceabilitySheetsButton.Location = new System.Drawing.Point(0, 80);
             this.TraceabilitySheetsButton.Name = "TraceabilitySheetsButton";
             this.TraceabilitySheetsButton.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.TraceabilitySheetsButton.Size = new System.Drawing.Size(250, 40);
+            this.TraceabilitySheetsButton.Size = new System.Drawing.Size(250, 46);
             this.TraceabilitySheetsButton.TabIndex = 2;
             this.TraceabilitySheetsButton.Text = "Traceability Sheets";
             this.TraceabilitySheetsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -146,7 +167,7 @@ namespace TraceabilityUI
             this.OptionsButton.Location = new System.Drawing.Point(0, 68);
             this.OptionsButton.Name = "OptionsButton";
             this.OptionsButton.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.OptionsButton.Size = new System.Drawing.Size(250, 45);
+            this.OptionsButton.Size = new System.Drawing.Size(250, 57);
             this.OptionsButton.TabIndex = 1;
             this.OptionsButton.Text = "Options";
             this.OptionsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -195,6 +216,49 @@ namespace TraceabilityUI
             this.ChildFormPanel.Name = "ChildFormPanel";
             this.ChildFormPanel.Size = new System.Drawing.Size(898, 680);
             this.ChildFormPanel.TabIndex = 1;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI Semilight", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(63, 162);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(271, 43);
+            this.dateTimePicker1.TabIndex = 13;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // CreateTraceability
+            // 
+            this.CreateTraceability.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CreateTraceability.Location = new System.Drawing.Point(368, 578);
+            this.CreateTraceability.Name = "CreateTraceability";
+            this.CreateTraceability.Size = new System.Drawing.Size(159, 47);
+            this.CreateTraceability.TabIndex = 12;
+            this.CreateTraceability.Text = "Create";
+            this.CreateTraceability.UseVisualStyleBackColor = true;
+            this.CreateTraceability.Click += new System.EventHandler(this.CreateTraceability_Click);
+            // 
+            // AddBakedProduct
+            // 
+            this.AddBakedProduct.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddBakedProduct.Location = new System.Drawing.Point(368, 374);
+            this.AddBakedProduct.Name = "AddBakedProduct";
+            this.AddBakedProduct.Size = new System.Drawing.Size(159, 47);
+            this.AddBakedProduct.TabIndex = 11;
+            this.AddBakedProduct.Text = "Add";
+            this.AddBakedProduct.UseVisualStyleBackColor = true;
+            this.AddBakedProduct.Click += new System.EventHandler(this.AddBakedProduct_Click);
+            // 
+            // DeleteBakedProduct
+            // 
+            this.DeleteBakedProduct.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteBakedProduct.Location = new System.Drawing.Point(368, 476);
+            this.DeleteBakedProduct.Name = "DeleteBakedProduct";
+            this.DeleteBakedProduct.Size = new System.Drawing.Size(159, 47);
+            this.DeleteBakedProduct.TabIndex = 10;
+            this.DeleteBakedProduct.Text = "Delete";
+            this.DeleteBakedProduct.UseVisualStyleBackColor = true;
+            this.DeleteBakedProduct.Click += new System.EventHandler(this.DeleteBakedProduct_Click);
             // 
             // TitleBar
             // 
@@ -261,49 +325,6 @@ namespace TraceabilityUI
             this.ProductsListBox.TabIndex = 1;
             this.ProductsListBox.SelectedIndexChanged += new System.EventHandler(this.ProductsListBox_SelectedIndexChanged);
             // 
-            // DeleteBakedProduct
-            // 
-            this.DeleteBakedProduct.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteBakedProduct.Location = new System.Drawing.Point(368, 476);
-            this.DeleteBakedProduct.Name = "DeleteBakedProduct";
-            this.DeleteBakedProduct.Size = new System.Drawing.Size(159, 47);
-            this.DeleteBakedProduct.TabIndex = 10;
-            this.DeleteBakedProduct.Text = "Delete";
-            this.DeleteBakedProduct.UseVisualStyleBackColor = true;
-            this.DeleteBakedProduct.Click += new System.EventHandler(this.DeleteBakedProduct_Click);
-            // 
-            // AddBakedProduct
-            // 
-            this.AddBakedProduct.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddBakedProduct.Location = new System.Drawing.Point(368, 374);
-            this.AddBakedProduct.Name = "AddBakedProduct";
-            this.AddBakedProduct.Size = new System.Drawing.Size(159, 47);
-            this.AddBakedProduct.TabIndex = 11;
-            this.AddBakedProduct.Text = "Add";
-            this.AddBakedProduct.UseVisualStyleBackColor = true;
-            this.AddBakedProduct.Click += new System.EventHandler(this.AddBakedProduct_Click);
-            // 
-            // CreateTraceability
-            // 
-            this.CreateTraceability.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateTraceability.Location = new System.Drawing.Point(368, 578);
-            this.CreateTraceability.Name = "CreateTraceability";
-            this.CreateTraceability.Size = new System.Drawing.Size(159, 47);
-            this.CreateTraceability.TabIndex = 12;
-            this.CreateTraceability.Text = "Create";
-            this.CreateTraceability.UseVisualStyleBackColor = true;
-            this.CreateTraceability.Click += new System.EventHandler(this.CreateTraceability_Click);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI Semilight", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI Semilight", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(63, 162);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(271, 43);
-            this.dateTimePicker1.TabIndex = 13;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
             // TraceabilityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -352,6 +373,7 @@ namespace TraceabilityUI
         private System.Windows.Forms.Button DeleteBakedProduct;
         private System.Windows.Forms.Button CreateTraceability;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button AddBatchNumberButton;
     }
 }
 

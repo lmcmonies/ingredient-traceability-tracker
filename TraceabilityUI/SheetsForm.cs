@@ -38,5 +38,28 @@ namespace TraceabilityUI
                 SheetsListBox.DisplayMember = "DisplaySheet";
             }
         }
+        public void AddSheet(HashSet<SheetModel> Sheets, SheetModel Sheet, string FileName)
+        {
+            foreach (IFileConnection txtConnection in GlobalConfig.Connection)
+            {
+                txtConnection.AddSheet(Sheet, FileName);
+
+                Sheets.Add(Sheet);
+            }
+        }
+
+        private void AddNewSheetButton_Click(object sender, EventArgs e)
+        {
+            SheetModel Sheet = new SheetModel
+            {
+                SheetName = NewSheetTextBox.Text.Trim(),
+                
+            };
+            
+            
+            AddSheet(SheetsSet, Sheet, SheetFile);
+            LoadData();
+            DisplayAllSheets();
+        }
     }
 }
